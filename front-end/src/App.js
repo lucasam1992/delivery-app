@@ -6,12 +6,12 @@ import Login from './pages/login';
 import Register from './pages/register';
 import AppContainer from './components/appcontainer';
 import { MainContainer } from './styles/containers';
-// import CustomerCheckout from './pages/CustomerCheckout';
-// import CustomerDetails from './pages/CustomerDetails';
-// import CustomerOrders from './pages/CustomerOrders';
-// import SellerOrders from './pages/SellerOrders';
-// import SellerDetails from './pages/SellerDetails';
-// import AdminManegement from './pages/AdminManagement';
+import CustomerCheckout from './pages/customercheckout';
+import CustomerDetails from './pages/customerdetails';
+import CustomerOrders from './pages/customerorders';
+import SellerOrders from './pages/sellerorders';
+import SellerDetails from './pages/sellerdetails';
+import AdminManegement from './pages/adminmanegement';
 
 function App() {
   return (

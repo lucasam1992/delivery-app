@@ -1,7 +1,7 @@
 const express = require('express');
 const Sale = require('../controllers/sale');
-const JoiValidate = require('../middlewares/JoiValidate');
-const { sale } = require('../utils/JoiSchemas');
+const JoiValidate = require('../middlewares/joivalidate');
+const { sale } = require('../schemas/joischema');
 const validate = require('../middlewares/validators');
 
 const route = express.Router();

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth } from '../../contexts/auth';
-import Navbar from '../Navbar';
+import { useAuth } from '../contexts/auth';
+import Navbar from './navbar';
 
 const Container = styled.div`
   .navbar {

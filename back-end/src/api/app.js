@@ -15,7 +15,7 @@ const login = require('./routes/login');
 const user = require('./routes/user');
 const product = require('./routes/product');
 const sale = require('./routes/sale');
-const errorMiddleware = require('./middlewares/Error');
+const errorMiddleware = require('./middlewares/error');
 
 app.use(cors());
 app.use(bodyParser.json());

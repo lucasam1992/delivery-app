@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NavItem from './NavItem';
+import NavItem from './navitem';
 import { NavbarContainer, NavbarWrapper, NavbarGroupLinks } from './styles';
 import { useAuth } from '../../contexts/auth';
 

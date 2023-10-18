@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const { User } = require('../../database/models');
-const generateToken = require('./generateToken');
+const generateToken = require('./generatetoken');
 
 const err = (code, message) => ({ code, message });
 const userNotFound = '"user" not found';

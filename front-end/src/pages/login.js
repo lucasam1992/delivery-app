@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import api from '../../api';
-import { useAuth } from '../../contexts/auth';
+import Input from '../components/input';
+import Button from '../components/button';
+import api from '../api';
+import { useAuth } from '../contexts/auth';
 
 const validateEmail = (email) => /[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+/.test(email);
 const MIN_PWD_LENGTH = 6;

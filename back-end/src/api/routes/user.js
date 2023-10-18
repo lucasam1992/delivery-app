@@ -1,7 +1,7 @@
 const express = require('express');
 const User = require('../controllers/user');
-const JoiValidate = require('../middlewares/JoiValidate');
-const { register, user } = require('../utils/JoiSchemas');
+const JoiValidate = require('../middlewares/joivalidate');
+const { register, user } = require('../schemas/joischema');
 const validate = require('../middlewares/validators');
 
 const route = express.Router({ mergeParams: true });

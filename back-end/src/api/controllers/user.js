@@ -1,6 +1,6 @@
 const rescue = require('express-rescue');
 const User = require('../services/user');
-const generateToken = require('../services/generateToken');
+const generateToken = require('../services/generatetoken');
 
 const register = rescue((req, res) => User.create(req.body)
   .then((data) => res.status(201).json(data)));
