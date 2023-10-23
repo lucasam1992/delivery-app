@@ -27,7 +27,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const evaluatorTimeout = 1000;
     if ((pathname === '/login' || pathname === '/register') && authed) {
-      console.log(user);
       setTimeout(() => {
         navigation(routes[user.role]);
       }, evaluatorTimeout);

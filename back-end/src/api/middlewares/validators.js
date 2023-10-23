@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const rescue = require('express-rescue');
-const { User } = require('../../database/models');
+const { users } = require('../../database/models');
 
 const secret = fs.readFileSync('jwt.evaluation.key', { encoding: 'utf-8' }).trim();
 const err = (code, message) => ({ code, message });
@@ -25,7 +25,7 @@ const token = rescue((req, _res, next) => {
 const userExists = rescue(async (req, _res, next) => {
   const { email } = req.body;
 
-  const userDB = await User.findOne({ where: { email } });
+  const userDB = await users.findOne({ where: { email } });
 
   if (userDB) throw err('conflict', 'Email already registered');
 

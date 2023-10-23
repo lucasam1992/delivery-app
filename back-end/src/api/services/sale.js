@@ -1,31 +1,32 @@
-const { Sale, SalesProduct, User, Product } = require('../../database/models');
+const { sales, salesProducts, users, products } = require('../../database/models');
 
 const include = [
-  { model: User, as: 'user', attributes: { exclude: ['password'] } },
-  { model: User, as: 'seller', attributes: { exclude: ['password'] } },
-  { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+  { model: users, as: 'user', attributes: { exclude: ['password'] } },
+  { model: users, as: 'seller', attributes: { exclude: ['password'] } },
+  { model: products, as: 'products', through: { attributes: ['quantity'] } },
 ];
 
 const err = (code, message) => ({ code, message });
 const saleNotFound = '"sale" not found';
 
 const create = async ({ cart, ...sale }) => {
-  const data = await Sale.create(sale);
+  console.log(sale);
+  const data = await sales.create(sale);
   
   cart.forEach(async ({ productId, quantity }) =>
-    SalesProduct.create({ saleId: data.id, productId, quantity }));
+  salesProducts.create({ saleId: data.id, productId, quantity }));
 
   return data;
 };
 
 const findAll = async () => {
-  const data = await Sale.findAll({ include });
+  const data = await sales.findAll({ include });
 
   return data;
 };
 
 const findOne = async ({ id }) => {
-  const data = await Sale.findOne({ where: { id }, include });
+  const data = await sales.findOne({ where: { id }, include });
   
   if (!data) throw err('notFound', saleNotFound);
 
@@ -33,7 +34,7 @@ const findOne = async ({ id }) => {
 };
 
 const update = async (sale, { id }) => {
-  const data = await Sale.update(sale, { where: { id } });
+  const data = await sales.update(sale, { where: { id } });
 
   if (!data) throw err('notFound', saleNotFound);
 
@@ -41,7 +42,7 @@ const update = async (sale, { id }) => {
 };
 
 const destroy = async ({ id }) => {
-  const data = await Sale.destroy({ where: { id } });
+  const data = await sales.destroy({ where: { id } });
 
   if (!data) throw err('notFound', saleNotFound);
   

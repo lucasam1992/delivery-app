@@ -1,12 +1,12 @@
 const md5 = require('md5');
-const { User } = require('../../database/models');
+const { users } = require('../../database/models');
 const generateToken = require('./generatetoken');
 
 const err = (code, message) => ({ code, message });
 const userNotFound = '"user" not found';
 
 const create = async ({ name, email, password, role = 'customer' }) => {
-  await User.create({ name, email, password: md5(password), role });
+  await users.create({ name, email, password: md5(password), role });
 
   const data = generateToken({ email, password });
 
@@ -15,7 +15,7 @@ const create = async ({ name, email, password, role = 'customer' }) => {
 
 const findAll = async ({ role }) => {
   const where = (role === undefined || role === '') ? {} : { role };
-  const data = await User.findAll({
+  const data = await users.findAll({
       where,
     attributes: {
         exclude: ['password'],
@@ -26,7 +26,7 @@ const findAll = async ({ role }) => {
 };
 
 const findOne = async ({ id }) => {
-  const data = await User.findOne({ where: { id }, 
+  const data = await users.findOne({ where: { id }, 
     attributes: {
       exclude: ['password'],
   } });
@@ -37,7 +37,7 @@ const findOne = async ({ id }) => {
 };
 
 const update = async (user, { id }) => {
-  const [data, wasCreated] = await User.upsert(user, { where: { id } });
+  const [data, wasCreated] = await users.upsert(user, { where: { id } });
 
   if (!wasCreated) throw err('notFound', userNotFound);
 
@@ -45,7 +45,7 @@ const update = async (user, { id }) => {
 };
 
 const destroy = async ({ id }) => {
-  const data = await User.destroy({ where: { id } });
+  const data = await users.destroy({ where: { id } });
   
   if (!data) throw err('notFound', userNotFound);
   

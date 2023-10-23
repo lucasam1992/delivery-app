@@ -53,6 +53,8 @@ function CustomerDetails() {
     quantity: product.SalesProduct.quantity,
   }));
 
+  console.log(data);
+
   return (
     <>
       <h2>Finalizar Pedido</h2>

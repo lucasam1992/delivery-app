@@ -1,4 +1,4 @@
-const { Product } = require('../../database/models');
+const { products } = require('../../database/models');
 
 const err = (code, message) => ({ code, message });
 const productNotFound = '"product" not found';
@@ -7,7 +7,7 @@ const productDuplicated = '"product" is already in the database';
 const create = async (product) => {
   let data;
   try {
-    data = await Product.create(product);
+    data = await products.create(product);
   } catch (error) {
    throw err('conflict', productDuplicated);
   }
@@ -16,13 +16,13 @@ const create = async (product) => {
 };
 
 const findAll = async () => {
-  const data = await Product.findAll();
-
+  const data = await products.findAll();
+  
   return data;
 };
 
 const findOne = async ({ id }) => {
-  const data = await Product.findOne({ where: { id } });
+  const data = await products.findOne({ where: { id } });
 
   if (!data) throw err('notFound', productNotFound);
 
@@ -30,7 +30,7 @@ const findOne = async ({ id }) => {
 };
 
 const update = async (product, { id }) => {
-  const data = await Product.update(product, { where: { id } });
+  const data = await products.update(product, { where: { id } });
 
   if (!data) throw err('notFound', productNotFound);
 
@@ -38,7 +38,7 @@ const update = async (product, { id }) => {
 };
 
 const destroy = async ({ id }) => {
-  const data = await Product.destroy({ where: { id } });
+  const data = await products.destroy({ where: { id } });
 
   if (!data) throw err('notFound', productNotFound);
   

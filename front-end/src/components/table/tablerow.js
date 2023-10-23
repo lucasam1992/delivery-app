@@ -36,7 +36,7 @@ const hasButton = {
 
 const productInfo = (product, onClick, type) => {
   const { index, name, quantity, price } = product;
-  const toReal = (value) => value.toFixed(2).replace('.', ',');
+  const toReal = (value) => Number(value).toFixed(2).replace('.', ',');
   const tid = datatestids[type];
 
   return (

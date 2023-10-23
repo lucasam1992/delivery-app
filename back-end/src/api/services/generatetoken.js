@@ -1,14 +1,14 @@
 const fs = require('fs');
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
-const { User } = require('../../database/models');
+const { users } = require('../../database/models');
 
 const secret = fs.readFileSync('jwt.evaluation.key', { encoding: 'utf-8' }).trim();
 const jwtConfig = { expiresIn: '7d', algorithm: 'HS256' };
 const err = (code, message) => ({ code, message });
 
 const generateToken = async ({ email, password }) => {
-  const userDB = await User.findOne({ where: { email, password: md5(password) } });
+  const userDB = await users.findOne({ where: { email, password: md5(password) } });
 
   if (!userDB) throw err('notFound', 'Incorrect username or password');
 

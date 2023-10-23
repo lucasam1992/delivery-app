@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      totalPrice: {
+      total_price: {
         allowNull: false,
         type: Sequelize.DECIMAL(9,2)
       },
@@ -53,6 +53,6 @@ module.exports = {
     return saleTable;
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sales');
+    queryInterface.dropTable('sales');
   }
 };
