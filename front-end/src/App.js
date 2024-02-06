@@ -1,53 +1,45 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import AuthProvider from './contexts/auth';
-import CustomerProducts from './pages/customerproducts';
-import Login from './pages/login';
-import Register from './pages/register';
-import AppContainer from './components/appcontainer';
-import { MainContainer } from './styles/containers';
-import CustomerCheckout from './pages/customercheckout';
-import CustomerDetails from './pages/customerdetails';
-import CustomerOrders from './pages/customerorders';
-import SellerOrders from './pages/sellerorders';
-import SellerDetails from './pages/sellerdetails';
-import AdminManegement from './pages/adminmanegement';
+import { Route, Redirect } from 'react-router-dom';
+import './App.css';
+import ClientProducts from './pages/CustomerProducts';
+import Register from './pages/Register';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CartProvider from './contexts/CartProvider';
+import Login from './pages/Login';
+import CustomerCheckout from './pages/CustomerCheckout';
+import SellerOrders from './pages/SellerOrders';
+import Orders from './pages/Orders';
+import OrderDetails from './pages/OrderDetails';
+import AdmPage from './pages/AdmPage';
+import SellerOrderDetails from './pages/SellerOrdersDetails';
+import UsersProvider from './contexts/UsersProvider';
+import SocketProvider from './contexts/SocketProvider';
 
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
-
-        <Route path="" element={ <Navigate to="login" /> } />
-        <Route path="login" element={ <MainContainer><Login /></MainContainer> } />
-        <Route path="register" element={ <MainContainer><Register /></MainContainer> } />
-
-        <Route path="customer" element={ <AppContainer /> }>
-          <Route index element={ <Navigate to="products" /> } />
-          <Route path="products" element={ <CustomerProducts /> } />
-          <Route path="orders">
-            <Route index element={ <CustomerOrders /> } />
-            <Route path=":id" element={ <CustomerDetails /> } />
-          </Route>
-          <Route path="checkout" element={ <CustomerCheckout /> } />
-        </Route>
-
-        <Route path="seller" element={ <AppContainer /> }>
-          <Route index element={ <Navigate to="orders" /> } />
-          <Route path="orders">
-            <Route index element={ <SellerOrders /> } />
-            <Route path=":id" element={ <SellerDetails /> } />
-          </Route>
-        </Route>
-
-        <Route path="admin" element={ <AppContainer /> }>
-          <Route index element={ <Navigate to="manage" /> } />
-          <Route path="manage" element={ <AdminManegement /> } />
-        </Route>
-
-        <Route path="*" element={ <h1>Not Found</h1> } />
-      </Routes>
-    </AuthProvider>
+    <>
+      <Route exact path="/">
+        <Redirect to="/login" />
+      </Route>
+      <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Register } />
+      <SocketProvider>
+        <Route exact path="/customer/orders" component={ Orders } />
+        <Route path="/customer/orders/:id" component={ OrderDetails } />
+        <Route exact path="/seller/orders" component={ SellerOrders } />
+        <Route
+          path="/seller/orders/:id"
+          render={ (p) => <SellerOrderDetails { ...p } /> }
+        />
+      </SocketProvider>
+      <CartProvider>
+        <Route exact path="/customer/products" component={ ClientProducts } />
+        <Route path="/customer/checkout" component={ CustomerCheckout } />
+      </CartProvider>
+      <UsersProvider>
+        <Route exact path="/admin/manage" component={ AdmPage } />
+      </UsersProvider>
+    </>
   );
 }
 

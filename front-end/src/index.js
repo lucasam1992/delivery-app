@@ -1,25 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider as ReduxProvider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
+import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-import GlobalStyles from './styles/GlobalStyles';
-import reportWebVitals from './reportWebVitals';
 import App from './App';
-import theme from './styles/themes';
-import store from './store';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReduxProvider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme.light}>
-          <GlobalStyles />
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </ReduxProvider>
-  </React.StrictMode >,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root'),
 );
 
