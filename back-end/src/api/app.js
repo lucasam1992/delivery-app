@@ -20,11 +20,13 @@ const errorMiddleware = require('./middlewares/error');
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '..', '..', 'public')));
+app.use('/images', express.static(path
+  .join(__dirname, '..', '..', '/public', '/images', '/public')));
 
 io.on('connection', (socket) => {
-  socket.emit('helloWorld', `${socket.id} says Hello!`);
-  socket.on('status', ({ id, status }) => io.emit('status', { id, status }));
+  socket.on('clientOrderSatus', (data) => {
+    io.emit('serverNewStatus', data);
+  });
 });
 
 app.get('/coffee', (_req, res) => res.status(418).end());

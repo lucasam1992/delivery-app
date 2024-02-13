@@ -44,14 +44,16 @@ const update = async (user, { id }) => {
   return data;
 };
 
-const destroy = async ({ id }) => {
-  const data = await users.destroy({ where: { id } });
+const destroy = async ({ email }) => {
+  const data = await users.destroy({ where: { email } });
   
   if (!data) throw err('notFound', userNotFound);
   
   const message = 'Usuário deletado com sucesso';
 
-  return { message };
+  const currentUsers = await users.findAll();
+
+  return { message, data: currentUsers };
 };
 
 module.exports = { create, findAll, findOne, update, destroy };

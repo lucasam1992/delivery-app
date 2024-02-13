@@ -10,12 +10,17 @@ const err = (code, message) => ({ code, message });
 const saleNotFound = '"sale" not found';
 
 const create = async ({ cart, ...sale }) => {
-  console.log(sale);
   const data = await sales.create(sale);
-  
-  cart.forEach(async ({ productId, quantity }) =>
-  salesProducts.create({ saleId: data.id, productId, quantity }));
 
+  const saleId = data.id;
+
+  const saleProduct = cart.map(async ({ id, quantity }) => {
+    const register = await salesProducts.create({ productId: id, saleId, quantity });
+    return register;
+    });
+
+    await Promise.all(saleProduct);
+  
   return data;
 };
 
@@ -23,6 +28,17 @@ const findAll = async () => {
   const data = await sales.findAll({ include });
 
   return data;
+};
+
+const findAllSalesByUserId = async (id) => {
+  const getId = Object.values(id)[0];
+
+  const userId = 'userId';
+  const query = { where: { [userId]: parseInt(getId, 10) } };
+
+  const allSales = await sales.findAll(query);
+
+  return allSales;
 };
 
 const findOne = async ({ id }) => {
@@ -49,4 +65,4 @@ const destroy = async ({ id }) => {
   return data;
 };
 
-module.exports = { create, findAll, findOne, update, destroy };
+module.exports = { create, findAll, findOne, update, destroy, findAllSalesByUserId };

@@ -38,8 +38,8 @@ function Signup() {
       localStorage.setItem('user', JSON.stringify(response));
       history.push('/customer/products');
     }).catch((e) => {
-      console.log(e);
       setErrorMessage('Usuario já cadastrado');
+      return e;
     });
   }
 

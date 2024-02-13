@@ -13,15 +13,11 @@ function Orders() {
       const salesRequest = await axios.get(`http://localhost:3001/sales/findallsalesbyuserid/${id}`, {
         headers: { Authorization: token },
       });
-
-      console.log(salesRequest);
       const allSales = salesRequest.data;
       setSales(allSales);
     }
     getSales();
   }, [token, id]);
-
-  console.log(sales);
 
   return (
     <div>

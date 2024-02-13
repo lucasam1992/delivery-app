@@ -67,7 +67,8 @@ function SendOrder() {
       saleDate: new Date(),
       status: 'Pendente',
     };
-    const myBody = JSON.stringify(data);
+
+    const myBody = data;
     const request = await axios.post('http://localhost:3001/sales', myBody,
       { headers: { Authorization: token },
       });

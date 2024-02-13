@@ -15,7 +15,7 @@ function OrderCard({ id, status, totalPrice, saleDate }) {
   });
 
   // () => history.push(`/customer/orders/${id}`)
-  console.log(id, status, totalPrice, saleDate);
+  // console.log(id, status, totalPrice, saleDate);
 
   return (
     <button

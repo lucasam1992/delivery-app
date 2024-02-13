@@ -11,7 +11,8 @@ route.use(validate.token);
 route.post('/', JoiValidate(sale), Sale.create);
 route.get('/', Sale.findAll);
 route.get('/:id', Sale.findOne);
-route.put('/:id', Sale.update);
+route.get('/findallsalesbyuserid/:id', Sale.findAllSalesByUserId);
+route.patch('/:id', Sale.update);
 route.delete('/:id', Sale.destroy);
 
 module.exports = route;

@@ -17,7 +17,6 @@ const create = async (product) => {
 
 const findAll = async () => {
   const data = await products.findAll();
-  
   return data;
 };
 

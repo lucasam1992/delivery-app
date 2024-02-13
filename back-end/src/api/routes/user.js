@@ -14,6 +14,6 @@ route.post('/', JoiValidate(user), validate.admin, validate.userExists, User.cre
 route.get('/', User.findAll);
 route.get('/:id', User.findOne);
 route.put('/:id', JoiValidate(user), User.update);
-route.delete('/:id', User.destroy);
+route.delete('/:email', User.destroy);
 
 module.exports = route;
