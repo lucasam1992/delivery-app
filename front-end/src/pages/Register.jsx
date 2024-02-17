@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import './Login.css';
+import { Form, Button } from 'react-bootstrap';
 
 function Signup() {
   const [signupValues, setSignupValues] = useState({ name: '', email: '', password: '' });
@@ -44,56 +46,54 @@ function Signup() {
   }
 
   return (
-    <div>
-      <div>
-        <label htmlFor="name">
-          Nome
-          <input
-            type="text"
-            name="name"
-            data-testid="common_register__input-name"
-            value={ signupValues.name }
-            onChange={ (event) => handleLocalState(event) }
-          />
-        </label>
+    <Form className="login-form">
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Nome</Form.Label>
+        <Form.Control
+          type="text"
+          name="name"
+          data-testid="common_register__input-name"
+          value={ signupValues.name }
+          onChange={ (event) => handleLocalState(event) }
+        />
+      </Form.Group>
 
-        <label htmlFor="email">
-          Email
-          <input
-            type="text"
-            name="email"
-            data-testid="common_register__input-email"
-            value={ signupValues.email }
-            onChange={ (event) => handleLocalState(event) }
-          />
-        </label>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="text"
+          name="email"
+          data-testid="common_register__input-email"
+          value={ signupValues.email }
+          onChange={ (event) => handleLocalState(event) }
+        />
+      </Form.Group>
 
-        <label htmlFor="password">
-          <span>Senha</span>
-          <input
-            type="password"
-            name="password"
-            data-testid="common_register__input-password"
-            value={ signupValues.password }
-            onChange={ (event) => handleLocalState(event) }
-          />
-        </label>
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          type="password"
+          name="password"
+          data-testid="common_register__input-password"
+          value={ signupValues.password }
+          onChange={ (event) => handleLocalState(event) }
+        />
+      </Form.Group>
 
-        <button
-          type="button"
-          data-testid="common_register__button-register"
-          disabled={ disableBtn }
-          onClick={ registerUser }
-        >
-          Cadastrar
-        </button>
-        <span
-          data-testid="common_register__element-invalid_register"
-        >
-          {errorMessage}
-        </span>
-      </div>
-    </div>
+      <Button
+        type="button"
+        data-testid="common_register__button-register"
+        disabled={ disableBtn }
+        onClick={ registerUser }
+      >
+        Cadastrar
+      </Button>
+      <span
+        data-testid="common_register__element-invalid_register"
+      >
+        {errorMessage}
+      </span>
+    </Form>
   );
 }
 
