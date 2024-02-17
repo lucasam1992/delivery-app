@@ -1,8 +1,6 @@
 # Boas vindas ao repositório do projeto App de Delivery!
 
-O projeto consiste em um aplicativo de delivery de bebidas. Nele é possível realizar um CRUD (Create, Read, Update e Delete) de bebidas que você deseja comprar.
-
-
+O projeto consiste em um aplicativo de delivery de bebidas. Nele é possível realizar um CRUD (Create, Read, Update e Delete) de bebidas, cadastrar e remover usuários e vendas. O usuário poderá encaminhar ao vendedor que deseja realizar a compra. 
 
 ## Tecnologias Usadas
 
@@ -13,6 +11,7 @@ O projeto consiste em um aplicativo de delivery de bebidas. Nele é possível re
 - Mochajs
 - Chaijs
 - Sinonjs
+- Jsonwebtoken
 
 ## Rodando o Projeto Localmente
 
@@ -20,6 +19,10 @@ O projeto consiste em um aplicativo de delivery de bebidas. Nele é possível re
 - Rode o comando `npm run dev` no diretório do back-end
 - Rode o comando `npm start` no diretório do front-end
 - Não esqueça de configurar em sua máquina o arquivo .env
+
+## Rodando Testes
+
+- Acesse o diretório tanto do back-end quanto do front-end e rode o comando `npm run test:coverage`
 
 ## Autor
 
