@@ -1,6 +1,6 @@
 # Boas vindas ao repositório do projeto App de Delivery!
 
-O projeto consiste em um aplicativo de delivery de bebidas. Nele é possível realizar um CRUD (Create, Read, Update e Delete) de bebidas, cadastrar e remover usuários e vendas. O usuário poderá encaminhar ao vendedor que deseja realizar a compra. 
+O projeto consiste em um aplicativo de delivery de bebidas. Nele é possível realizar um CRUD (Create, Read, Update e Delete) de bebidas, cadastrar e remover usuários e vendas. O usuário poderá encaminhar a qual vendedor deseja realizar a compra. 
 
 ## Tecnologias Usadas
 
